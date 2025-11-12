@@ -30,7 +30,38 @@ const { dispatch } = store;
 const options = {
     // reconnectionDelay: 1000,
 };
-const socket = IO(config.server, options);
+
+// Resolve server URL robustly in browser: if config.server points to localhost
+// but the page is served from a remote host, replace localhost with the
+// current page hostname so the client connects back to the real server.
+function resolveServerUrl(raw: string) {
+    if (!raw) return raw;
+    let url = raw;
+    // If schema-less (//host:port), add current page protocol
+    if (url.startsWith('//')) {
+        url = `${window.location.protocol}${url}`;
+    }
+    try {
+        const parsed = new URL(url, window.location.href);
+        // If config uses localhost but page is not localhost, swap to page host
+        if (parsed.hostname === 'localhost' && window.location.hostname !== 'localhost') {
+            parsed.hostname = window.location.hostname;
+            // keep port from parsed
+            return parsed.toString();
+        }
+        return parsed.toString();
+    } catch (e) {
+        // fallback: simple replace
+        if (url.indexOf('localhost') !== -1 && window.location.hostname !== 'localhost') {
+            return url.replace(/localhost/g, window.location.hostname);
+        }
+        return url;
+    }
+}
+
+const serverUrl = resolveServerUrl(config.server);
+console.info('[socket] connecting to', serverUrl);
+const socket = IO(serverUrl, options);
 
 async function loginFailback() {
     const defaultGroup = await guest(
