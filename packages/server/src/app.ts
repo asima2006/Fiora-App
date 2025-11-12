@@ -39,6 +39,20 @@ const io = new (SocketIO as any).Server(httpServer, {
         origin: config.allowOrigin || '*',
         credentials: true,
     },
+    // Respond to private network preflight requests so browsers can allow
+    // cross-address-space requests when appropriate (requires secure context on client)
+    handlePreflightRequest: (req: any, res: any) => {
+        const origin = req.headers.origin || '*';
+        const headers: any = {
+            'Access-Control-Allow-Origin': origin,
+            'Access-Control-Allow-Credentials': 'true',
+            'Access-Control-Allow-Headers': 'Content-Type, Authorization, Sec-Private-Network, X-Requested-With',
+            // This header is required for Private Network Access checks
+            'Access-Control-Allow-Private-Network': 'true',
+        };
+        res.writeHead(200, headers);
+        res.end();
+    },
     pingTimeout: 10000,
     pingInterval: 5000,
     maxHttpBufferSize: 1e7, // 10MB to support file uploads
