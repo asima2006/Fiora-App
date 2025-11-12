@@ -34,6 +34,32 @@ const app = new Koa();
 app.proxy = true;
 
 const httpServer = http.createServer(app.callback());
+// Ensure CORS headers are present on all HTTP responses (including socket.io polling)
+httpServer.on('request', (req: any, res: any) => {
+    const origin = req.headers?.origin || req.headers?.Origin;
+    if (!origin) return;
+    // Respect configured allowed origins if present, otherwise echo origin
+    const allowed = config.allowOrigin;
+    let allowOriginHeader = origin;
+    if (Array.isArray(allowed) && allowed.length > 0) {
+        if (!allowed.includes(origin)) {
+            // origin not allowed; do not set CORS headers
+            return;
+        }
+        allowOriginHeader = origin;
+    } else if (typeof allowed === 'string' && allowed) {
+        allowOriginHeader = allowed;
+    }
+
+    res.setHeader('Access-Control-Allow-Origin', allowOriginHeader);
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    res.setHeader(
+        'Access-Control-Allow-Headers',
+        'Content-Type, Authorization, Sec-Private-Network, X-Requested-With',
+    );
+    // Allow Private Network for preflight checks too
+    res.setHeader('Access-Control-Allow-Private-Network', 'true');
+});
 const io = new (SocketIO as any).Server(httpServer, {
     cors: {
         origin: config.allowOrigin || '*',
