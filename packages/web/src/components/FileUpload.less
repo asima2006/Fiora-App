@@ -1,0 +1,166 @@
+.fileUpload {
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    padding: 40px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    background: #fafafa;
+
+    &:hover:not(.disabled) {
+        border-color: #1890ff;
+        background: #f0f5ff;
+    }
+
+    &.dragging {
+        border-color: #1890ff;
+        background: #e6f7ff;
+        transform: scale(1.02);
+    }
+
+    &.disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        background: #f5f5f5;
+    }
+
+    .icon {
+        font-size: 48px;
+        color: #999;
+        margin-bottom: 16px;
+
+        i {
+            font-size: 48px;
+        }
+    }
+
+    .text {
+        font-size: 16px;
+        color: #666;
+        margin: 0 0 8px;
+    }
+
+    .hint {
+        font-size: 12px;
+        color: #999;
+        margin: 0;
+    }
+}
+
+.uploadProgress {
+    margin-top: 16px;
+
+    .uploadItem {
+        padding: 12px;
+        margin-bottom: 8px;
+        background: #fff;
+        border: 1px solid #e8e8e8;
+        border-radius: 4px;
+
+        .uploadInfo {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+
+            .filename {
+                flex: 1;
+                font-size: 14px;
+                color: #333;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .status {
+                margin-left: 12px;
+                font-size: 14px;
+                font-weight: 500;
+
+                &.uploading {
+                    color: #1890ff;
+                }
+
+                &.success {
+                    color: #52c41a;
+                    font-size: 18px;
+                }
+
+                &.error {
+                    color: #ff4d4f;
+                    font-size: 18px;
+                }
+            }
+        }
+
+        .progressBar {
+            height: 4px;
+            background: #f0f0f0;
+            border-radius: 2px;
+            overflow: hidden;
+
+            .progressFill {
+                height: 100%;
+                background: linear-gradient(90deg, #1890ff, #36cfc9);
+                transition: width 0.3s;
+            }
+        }
+
+        .error {
+            margin: 8px 0 0;
+            font-size: 12px;
+            color: #ff4d4f;
+        }
+    }
+}
+
+// Dark mode support
+@darkModeQuery: ~'(prefers-color-scheme: dark)';
+@media @darkModeQuery {
+    .fileUpload {
+        background: rgba(255, 255, 255, 0.03);
+        border-color: rgba(255, 255, 255, 0.15);
+
+        &:hover:not(.disabled) {
+            border-color: #1890ff;
+            background: rgba(24, 144, 255, 0.1);
+        }
+
+        &.dragging {
+            background: rgba(24, 144, 255, 0.15);
+        }
+
+        &.disabled {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .icon {
+            color: rgba(255, 255, 255, 0.45);
+        }
+
+        .text {
+            color: rgba(255, 255, 255, 0.65);
+        }
+
+        .hint {
+            color: rgba(255, 255, 255, 0.45);
+        }
+    }
+
+    .uploadProgress {
+        .uploadItem {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(255, 255, 255, 0.12);
+
+            .uploadInfo {
+                .filename {
+                    color: rgba(255, 255, 255, 0.85);
+                }
+            }
+
+            .progressBar {
+                background: rgba(255, 255, 255, 0.08);
+            }
+        }
+    }
+}

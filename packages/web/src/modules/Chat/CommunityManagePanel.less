@@ -1,0 +1,483 @@
+@import '../../styles/variable.less';
+
+.communityManagePanel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+
+    &.show {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .container {
+        position: absolute;
+        right: -400px;
+        top: 0;
+        bottom: 0;
+        width: 400px;
+        background: #ffffff;
+        box-shadow: -2px 0 8px rgba(0, 0, 0, 0.15);
+        transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        flex-direction: column;
+
+        &.show {
+            right: 0;
+        }
+    }
+
+    .header {
+        padding: 20px 24px;
+        border-bottom: 1px solid #e8e8e8;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        
+        .title {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .subtitle {
+            margin: 4px 0 0 0;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.85);
+        }
+    }
+
+    .content {
+        flex: 1;
+        overflow-y: auto;
+        padding: 20px 24px;
+
+        &::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: #e8e8e8;
+            border-radius: 3px;
+        }
+    }
+
+    .block {
+        margin-bottom: 24px;
+        padding-bottom: 24px;
+        border-bottom: 1px solid #e8e8e8;
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        .blockTitle {
+            margin: 0 0 12px 0;
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            span {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                min-width: 24px;
+                height: 24px;
+                padding: 0 8px;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                border-radius: 12px;
+                font-size: 12px;
+                font-weight: 500;
+            }
+        }
+
+        .input {
+            width: 100%;
+            margin-bottom: 12px;
+        }
+
+    .button {
+        width: 100%;
+        padding: 10px;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s;
+        flex: 1;
+
+        &:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+        }
+    }        .avatarPreview {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 2px dashed #e8e8e8;
+            cursor: pointer;
+            transition: all 0.2s;
+
+            &:hover {
+                border-color: #667eea;
+                background: rgba(102, 126, 234, 0.05);
+            }
+
+            img {
+                width: 64px;
+                height: 64px;
+                border-radius: 8px;
+                object-fit: cover;
+            }
+
+            .avatarText {
+                flex: 1;
+                
+                p {
+                    margin: 0;
+                    font-size: 13px;
+                    color: #333;
+                    
+                    &:first-child {
+                        font-weight: 500;
+                        margin-bottom: 4px;
+                    }
+
+                    &:last-child {
+                        color: #999;
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+
+        .info {
+            margin: 8px 0;
+            padding: 10px 12px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            font-size: 13px;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            strong {
+                color: #333;
+                font-weight: 500;
+            }
+        }
+    }
+
+    .membersList {
+        max-height: 400px;
+        overflow-y: auto;
+
+        &::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: #e8e8e8;
+            border-radius: 2px;
+        }
+    }
+
+    .memberItem {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px;
+        margin-bottom: 8px;
+        background: #f8f9fa;
+        border-radius: 8px;
+        transition: all 0.2s;
+
+        &:hover {
+            background: rgba(102, 126, 234, 0.05);
+            transform: translateX(2px);
+        }
+
+        .memberInfo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+            cursor: pointer;
+
+            .memberName {
+                margin: 0;
+                font-size: 14px;
+                font-weight: 500;
+                color: #333;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+        }
+
+        .memberActions {
+            display: flex;
+            gap: 8px;
+
+            button {
+                padding: 6px 14px;
+                font-size: 12px;
+                height: 32px;
+                border-radius: 6px;
+                font-weight: 500;
+                transition: all 0.2s;
+
+                &:hover {
+                    transform: translateY(-1px);
+                }
+            }
+        }
+
+        .roleBadge {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+
+            &.owner {
+                background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+                color: white;
+                box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+            }
+
+            &.admin {
+                background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+                color: white;
+                box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+            }
+
+            &.member {
+                background: #f8f9fa;
+                color: #999;
+                border: 1px solid #e8e8e8;
+            }
+        }
+    }
+
+    .deleteGroupConfirmDialog {
+        .dialogContent {
+            padding: 24px;
+            text-align: center;
+        }
+
+        .confirmButtons {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+
+            button {
+                flex: 1;
+                height: 40px;
+                font-weight: 500;
+            }
+        }
+    }
+
+    .friendsList {
+        max-height: 300px;
+        overflow-y: auto;
+        border: 1px solid #e8e8e8;
+        border-radius: 8px;
+        padding: 8px;
+        margin-top: 8px;
+
+        &::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: #e8e8e8;
+            border-radius: 2px;
+        }
+    }
+
+    .friendItem {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        margin-bottom: 6px;
+        background: #f8f9fa;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.2s;
+        gap: 10px;
+
+        &:hover {
+            background: #e9ecef;
+            transform: translateX(2px);
+        }
+
+        &.selected {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border: 2px solid #667eea;
+        }
+
+        .friendName {
+            flex: 1;
+            font-size: 14px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #667eea;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: #667eea;
+            font-weight: bold;
+        }
+    }
+
+    .count {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 24px;
+        height: 24px;
+        padding: 0 8px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 500;
+    }
+
+    .avatarOverlay {
+        flex: 1;
+        text-align: center;
+
+        p {
+            margin: 0;
+            color: #333;
+            font-size: 13px;
+
+            &:first-child {
+                font-weight: 500;
+                margin-bottom: 4px;
+            }
+        }
+
+        .avatarHint {
+            color: #999;
+            font-size: 11px;
+        }
+    }
+
+    .memberDetails {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .promoteBtn,
+    .demoteBtn {
+        padding: 6px 14px;
+        font-size: 12px;
+        height: 32px;
+        border-radius: 6px;
+        font-weight: 500;
+        transition: all 0.2s;
+
+        &:hover {
+            transform: translateY(-1px);
+        }
+    }
+
+    .dangerButton {
+        width: 100%;
+        height: 38px;
+        font-weight: 500;
+        transition: all 0.2s;
+
+        &:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);
+        }
+    }
+
+    .confirmDialog {
+        .dialogContent {
+            padding: 20px;
+
+            p {
+                margin: 0 0 12px 0;
+                font-size: 14px;
+                color: #333;
+            }
+
+            .warningText {
+                color: #dc2626;
+                font-weight: 600;
+                margin-top: 8px;
+            }
+
+            .confirmButtons {
+                display: flex;
+                gap: 12px;
+                margin-top: 20px;
+
+                button {
+                    flex: 1;
+                    height: 38px;
+                }
+            }
+        }
+    }
+
+    .infoGrid {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .infoItem {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 12px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            font-size: 13px;
+
+            strong {
+                color: #666;
+                font-weight: 500;
+            }
+
+            span {
+                color: #333;
+            }
+        }
+    }
+}

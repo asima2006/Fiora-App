@@ -1,0 +1,98 @@
+@import './variable.less';
+
+// Global responsive utilities and fixes
+
+// Viewport meta is set in template.html, this ensures proper rendering
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+}
+
+// Mobile specific improvements
+@media @mobile {
+    // Prevent zoom on input focus
+    input, textarea, select {
+        font-size: 16px !important;
+    }
+    
+    // Better touch targets
+    button, a, .clickable {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    // Scrolling improvements
+    * {
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+// Tablet improvements
+@media @tablet {
+    input, textarea {
+        font-size: 14px;
+    }
+}
+
+// Hide scrollbars but keep functionality
+@media @mobile-and-tablet {
+    ::-webkit-scrollbar {
+        width: 2px;
+        height: 2px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 1px;
+    }
+}
+
+// Ensure proper flex layout on all screens
+.app-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    
+    @media @mobile {
+        flex-direction: column;
+    }
+}
+
+// Image responsiveness
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+// Responsive text
+@media @mobile {
+    .responsive-text {
+        font-size: 14px;
+    }
+}
+
+@media @tablet {
+    .responsive-text {
+        font-size: 15px;
+    }
+}
+
+@media @desktop {
+    .responsive-text {
+        font-size: 16px;
+    }
+}
+
+// Safe area insets for iOS
+@supports (padding: max(0px)) {
+    .has-safe-area-inset-bottom {
+        padding-bottom: max(env(safe-area-inset-bottom), 0px);
+    }
+    
+    .has-safe-area-inset-top {
+        padding-top: max(env(safe-area-inset-top), 0px);
+    }
+}

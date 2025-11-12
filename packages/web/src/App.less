@@ -1,0 +1,28 @@
+@import "./styles/variable.less";
+
+.app {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.child {
+    position: absolute;
+    display: flex;
+    border-radius: 0;
+    box-shadow: none;
+    width: 100%;
+    height: 100%;
+    
+    // Mobile optimizations
+    @media @mobile {
+        flex-direction: column;
+        overflow: hidden;
+    }
+    
+    // Tablet optimizations
+    @media @tablet {
+        flex-direction: row;
+    }
+}

@@ -1,0 +1,413 @@
+@import '../../styles/variable.less';
+@import '../../styles/darkSidebar.less';
+
+.sidebar {
+    width: 80px;
+    min-width: 80px;
+    max-width: 80px;
+    background-color: rgba(var(--primary-color-8), 0.95);
+    border-right: 2px solid rgba(41, 98, 255, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    transition: width var(--transition-standard, 0.3s);
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    &[data-aero=true] {
+        background-color: rgba(var(--primary-color-0), 0.85);
+    }
+
+    @media @mobile {
+        width: 56px;
+        min-width: 56px;
+        max-width: 56px;
+        padding: 0 2px;
+        border-right: 1px solid rgba(41, 98, 255, 0.3);
+    }
+    
+    @media @tablet {
+        width: 70px;
+        min-width: 70px;
+        max-width: 70px;
+    }
+    
+    @media @small-desktop {
+        width: 75px;
+        min-width: 75px;
+        max-width: 75px;
+    }
+    
+    // Dark sidebar theme styles
+    &.darkTheme {
+        background-color: var(--sidebar-bg);
+        width: var(--sidebar-collapsed-width);
+        box-shadow: var(--shadow-elevation-2);
+        
+        &.expanded {
+            width: var(--sidebar-expanded-width);
+            align-items: flex-start;
+            padding: 16px 12px;
+        }
+        
+        @media @mobile {
+            width: 56px;
+            min-width: 56px;
+            &.expanded {
+                width: 75%;
+                max-width: 280px;
+            }
+        }
+        
+        @media @tablet {
+            width: 70px;
+            &.expanded {
+                width: 240px;
+            }
+        }
+    }
+}
+
+.avatarContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 12px;
+    
+    .darkTheme & {
+        margin-top: 0;
+    }
+    
+    .darkTheme.expanded & {
+        flex-direction: row;
+        gap: 12px;
+        padding: 12px;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: background var(--transition-fast);
+        
+        &:hover {
+            background: var(--sidebar-hover);
+        }
+    }
+}
+
+.avatar {
+    margin-top: 16px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    width: 44px;
+    height: 44px;
+    
+    .darkTheme & {
+        margin-top: 0;
+        width: var(--avatar-collapsed);
+        height: var(--avatar-collapsed);
+    }
+    
+    .darkTheme.expanded & {
+        width: var(--avatar-expanded);
+        height: var(--avatar-expanded);
+    }
+    
+    @media @mobile {
+        margin-top: 12px;
+        width: 32px;
+        height: 32px;
+        
+        .darkTheme & {
+            margin-top: 0;
+            width: 28px;
+            height: 28px;
+        }
+        
+        .darkTheme.expanded & {
+            width: 36px;
+            height: 36px;
+        }
+    }
+    
+    @media @tablet {
+        width: 40px;
+        height: 40px;
+        margin-top: 14px;
+    }
+}
+
+.userInfo {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.username {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--sidebar-text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.status {
+    position: absolute;
+    top: 66px;
+    left: 44px;
+    
+    @media @mobile {
+        top: 48px;
+        left: 36px;
+    }
+    
+    @media @tablet {
+        top: 58px;
+        left: 40px;
+    }
+}
+
+.statusDark {
+    margin-top: 6px;
+    margin-bottom: 12px;
+}
+
+.tabs {
+    margin-top: 50px;
+}
+
+.filterButtons {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 0 8px;
+    gap: 6px;
+    border-bottom: 1px solid rgba(41, 98, 255, 0.2);
+    padding-bottom: 12px;
+    
+    :global {
+        .IconButton {
+            position: relative;
+            width: 36px !important;
+            height: 36px !important;
+            
+            .iconfont {
+                color: var(--primary-text-color-7);
+                transition: color 0.2s, transform 0.2s;
+                font-size: 20px !important;
+            }
+            
+            &:hover {
+                .iconfont {
+                    color: var(--primary-text-color-10);
+                    transform: scale(1.1);
+                }
+            }
+        }
+    }
+    
+    @media @mobile {
+        margin-top: 12px;
+        padding: 0 2px;
+        gap: 4px;
+        padding-bottom: 8px;
+        
+        :global {
+            .IconButton {
+                width: 28px !important;
+                height: 28px !important;
+                
+                .iconfont {
+                    font-size: 16px !important;
+                }
+            }
+        }
+    }
+    
+    @media @tablet {
+        margin-top: 16px;
+        padding: 0 6px;
+        gap: 5px;
+        padding-bottom: 10px;
+        
+        :global {
+            .IconButton {
+                width: 32px !important;
+                height: 32px !important;
+                
+                .iconfont {
+                    font-size: 18px !important;
+                }
+            }
+        }
+    }
+    
+    .darkTheme & {
+        border-bottom: 1px solid var(--sidebar-border);
+        
+        :global {
+            .IconButton {
+                .iconfont {
+                    color: var(--sidebar-text);
+                    opacity: 0.6;
+                }
+                
+                &:hover {
+                    .iconfont {
+                        opacity: 1;
+                        transform: scale(1.1);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.activeFilter {
+    :global {
+        .iconfont {
+            color: var(--primary-text-color-10) !important;
+            opacity: 1 !important;
+            transform: scale(1.15);
+        }
+    }
+    
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -3px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 20px;
+        height: 3px;
+        background: var(--primary-color-10);
+        border-radius: 2px;
+    }
+    
+    .darkTheme & {
+        &::after {
+            background: var(--primary-color);
+        }
+    }
+}
+
+.buttons {
+    position: absolute;
+    bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 0 8px;
+
+    :global {
+        .IconButton {
+            width: 36px !important;
+            height: 36px !important;
+        }
+        
+        .iconfont {
+            color: var(--primary-text-color-7);
+            transition: color 0.2s;
+            font-size: 20px !important;
+        }
+    }
+
+    & > div, .linkButton {
+        margin-top: 8px;
+        &:hover {
+            .iconfont {
+                color: var(--primary-text-color-10);
+            }
+        }
+    }
+    
+    @media @mobile {
+        bottom: 35px;
+        padding: 0 2px;
+        
+        & > div, .linkButton {
+            margin-top: 4px;
+        }
+        
+        :global {
+            .IconButton {
+                width: 28px !important;
+                height: 28px !important;
+            }
+            
+            .iconfont {
+                font-size: 16px !important;
+            }
+        }
+    }
+    
+    @media @tablet {
+        bottom: 38px;
+        padding: 0 6px;
+        
+        & > div, .linkButton {
+            margin-top: 6px;
+        }
+        
+        :global {
+            .IconButton {
+                width: 32px !important;
+                height: 32px !important;
+            }
+            
+            .iconfont {
+                font-size: 18px !important;
+            }
+        }
+    }
+    
+    .darkTheme & {
+        :global {
+            .iconfont {
+                color: var(--sidebar-text);
+                opacity: 0.7;
+            }
+        }
+        
+        & > div, .linkButton {
+            &:hover {
+                :global {
+                    .iconfont {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.linkButton {
+    text-decoration: none;
+}
+
+.expandToggle {
+    position: absolute;
+    bottom: 12px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0 12px;
+    
+    :global {
+        .iconfont {
+            color: var(--sidebar-muted);
+            transition: color var(--transition-fast);
+        }
+    }
+    
+    &:hover {
+        :global {
+            .iconfont {
+                color: var(--sidebar-text);
+            }
+        }
+    }
+}

@@ -1,0 +1,118 @@
+.community-list-item {
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &.active {
+        background-color: var(--primary-color-4);
+
+        &[data-aero=true] {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+    }
+
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .community-card-header {
+        height: 90px;
+        display: flex;
+        align-items: center;
+        padding: 10px 16px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
+
+    .community-avatar {
+        flex-shrink: 0;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        overflow: hidden;
+        background: var(--primary-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .community-header-text {
+        flex: 1;
+        margin-left: 12px;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .community-name-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 4px;
+    }
+
+    .community-name {
+        margin: 0;
+        font-size: 14px;
+        font-weight: normal;
+        color: white;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .community-subtitle {
+        margin: 0;
+        margin-top: 4px;
+        font-size: 12px;
+        color: white;
+        opacity: 0.8;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 188px;
+        height: 20px;
+        line-height: 20px;
+    }
+
+    .community-chevron {
+        display: none;
+    }
+
+    .community-sub-list {
+        display: none;
+    }
+
+    .community-sub-item {
+        display: none;
+    }
+
+    .sub-avatar {
+        display: none;
+    }
+
+    .announcement-icon {
+        display: none;
+    }
+
+    .fallback-avatar {
+        display: none;
+    }
+
+    .sub-info {
+        display: none;
+    }
+
+    .sub-name {
+        display: none;
+    }
+
+    .sub-meta {
+        display: none;
+    }
+}

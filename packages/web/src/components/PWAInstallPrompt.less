@@ -1,0 +1,196 @@
+.pwaPrompt {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10000;
+    animation: slideUp 0.3s ease-out;
+
+    .container {
+        position: relative;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        padding: 20px;
+        min-width: 320px;
+        max-width: 400px;
+    }
+
+    .closeButton {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        background: none;
+        border: none;
+        font-size: 24px;
+        color: #999;
+        cursor: pointer;
+        padding: 4px;
+        line-height: 1;
+        transition: color 0.2s;
+
+        &:hover {
+            color: #333;
+        }
+    }
+
+    .content {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 16px;
+
+        .icon {
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            margin-right: 16px;
+
+            i {
+                font-size: 28px;
+                color: #fff;
+            }
+        }
+
+        .text {
+            flex: 1;
+
+            h3 {
+                margin: 0 0 4px;
+                font-size: 16px;
+                font-weight: 600;
+                color: #333;
+            }
+
+            p {
+                margin: 0;
+                font-size: 13px;
+                color: #666;
+                line-height: 1.5;
+            }
+        }
+    }
+
+    .actions {
+        display: flex;
+        gap: 8px;
+        justify-content: flex-end;
+
+        button {
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            outline: none;
+        }
+
+        .dismissBtn {
+            background: #f5f5f5;
+            color: #666;
+
+            &:hover {
+                background: #e8e8e8;
+            }
+        }
+
+        .installBtn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+
+            &:hover {
+                box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+                transform: translateY(-1px);
+            }
+
+            &:active {
+                transform: translateY(0);
+            }
+        }
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateX(-50%) translateY(100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
+}
+
+// Mobile responsive
+@media (max-width: 768px) {
+    .pwaPrompt {
+        bottom: 10px;
+        left: 10px;
+        right: 10px;
+        transform: none;
+
+        .container {
+            min-width: auto;
+            max-width: none;
+        }
+    }
+
+    @keyframes slideUp {
+        from {
+            transform: translateY(100px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+}
+
+// Dark mode support
+@darkModeQuery: ~'(prefers-color-scheme: dark)';
+@media @darkModeQuery {
+    .pwaPrompt {
+        .container {
+            background: #1f1f1f;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .closeButton {
+            color: #999;
+
+            &:hover {
+                color: #fff;
+            }
+        }
+
+        .content {
+            .text {
+                h3 {
+                    color: #fff;
+                }
+
+                p {
+                    color: rgba(255, 255, 255, 0.7);
+                }
+            }
+        }
+
+        .actions {
+            .dismissBtn {
+                background: rgba(255, 255, 255, 0.1);
+                color: rgba(255, 255, 255, 0.85);
+
+                &:hover {
+                    background: rgba(255, 255, 255, 0.15);
+                }
+            }
+        }
+    }
+}

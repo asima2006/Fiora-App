@@ -1,0 +1,121 @@
+.linkmanList {
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.communityContainer {
+    margin-bottom: 4px;
+    position: relative;
+}
+
+.communityHeader {
+    position: relative;
+}
+
+.ownerBadge,
+.adminBadge {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    z-index: 1;
+}
+
+.ownerBadge {
+    filter: drop-shadow(0 0 2px rgba(255, 215, 0, 0.5));
+}
+
+.adminBadge {
+    filter: drop-shadow(0 0 2px rgba(100, 181, 246, 0.5));
+}
+
+.communityGroupsList {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 4px 0;
+    margin-left: 16px;
+    border-left: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.communityGroupItem {
+    display: flex;
+    align-items: center;
+    padding: 10px 16px 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    gap: 12px;
+    min-height: 56px;
+    position: relative;
+
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.08);
+    }
+
+    &:active {
+        background-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .groupIcon {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--primary-color, #4a9eff);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        color: white;
+        font-size: 14px;
+        font-weight: 600;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        svg {
+            width: 14px;
+            height: 14px;
+        }
+    }
+
+    .groupName {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 13px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-weight: 400;
+        flex: 1;
+    }
+}
+
+.groupUnreadBadge {
+    background: #4a9eff;
+    color: white;
+    border-radius: 10px;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 600;
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+.announcementGroup {
+    .groupIcon {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    
+    .groupName {
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.95);
+    }
+}

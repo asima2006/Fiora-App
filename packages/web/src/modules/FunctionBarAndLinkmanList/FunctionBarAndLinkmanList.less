@@ -1,0 +1,66 @@
+@import "../../styles/variable.less";
+@import "../../styles/darkSidebar.less";
+
+.functionBarAndLinkmanList {
+    width: 300px;
+    height: 100%;
+    position: relative;
+    display: flex;
+    background-color: unset;
+
+    @media @mobile {
+        position: absolute;
+        left: 0;
+        z-index: 1;
+        width: 100%;
+        background-color: rgba(37, 37, 37, 0.5);
+
+        .container {
+            background-color: var(--primary-color-7);
+        }
+    }
+    
+    @media @tablet {
+        width: 250px;
+    }
+    
+    @media @small-desktop {
+        width: 280px;
+    }
+    
+    .dark-sidebar & {
+        background-color: transparent;
+    }
+}
+
+.container {
+    background-color: rgba(25, 25, 40, 0.95); // Dark background
+    border-right: 2px solid rgba(41, 98, 255, 0.3); // Blue border
+    flex: 1;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+
+    &[data-aero=true] {
+        background-color: rgba(25, 25, 40, 0.85);
+    }
+
+    @media @mobile {
+        background-color: rgba(25, 25, 40, 0.98);
+        max-width: 100%;
+        width: 100%;
+    }
+    
+    @media @tablet {
+        max-width: 250px;
+    }
+    
+    @media @small-desktop {
+        max-width: 280px;
+    }
+    
+    .dark-sidebar & {
+        background-color: var(--panel-bg);
+        border-right: 2px solid rgba(33, 150, 243, 0.3);
+    }
+}

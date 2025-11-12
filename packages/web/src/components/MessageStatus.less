@@ -1,0 +1,46 @@
+.messageStatus {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 4px;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+
+    &:hover {
+        opacity: 1;
+    }
+
+    svg {
+        width: 16px;
+        height: 15px;
+    }
+
+    &.sent {
+        color: #999;
+    }
+
+    &.delivered {
+        color: #53bdeb;
+    }
+
+    &.read {
+        color: #4fc3f7;
+    }
+}
+
+// Dark mode support
+@darkModeQuery: ~'(prefers-color-scheme: dark)';
+@media @darkModeQuery {
+    .messageStatus {
+        &.sent {
+            color: #777;
+        }
+
+        &.delivered {
+            color: #42a5f5;
+        }
+
+        &.read {
+            color: #4fc3f7;
+        }
+    }
+}

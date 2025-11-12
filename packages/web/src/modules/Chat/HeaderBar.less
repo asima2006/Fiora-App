@@ -1,0 +1,143 @@
+@import '../../styles/variable.less';
+@import '../../styles/darkSidebar.less';
+
+.headerBar {
+    height: 70px;
+    border-bottom: 1px solid rgba(208, 208, 208, 0.6);
+    display: flex;
+    align-items: center;
+    padding: 0px 18px;
+    justify-content: space-between;
+    position: relative;
+
+    &[data-aero=true] {
+        border-bottom: 1px solid rgba(208, 208, 208, 0.3);
+    }
+
+    @media @mobile {
+        height: 60px;
+        padding: 0 8px;
+        flex-wrap: nowrap;
+    }
+    
+    @media @tablet {
+        height: 65px;
+        padding: 0 12px;
+    }
+
+    :global {
+        .iconfont {
+            color: var(--primary-color-10);
+            &:hover {
+                color: var(--primary-color-8);
+            }
+        }
+
+        .online, .offline {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 4px;
+            transform: translateY(1px);
+        }
+    }
+    
+    .dark-sidebar & {
+        background-color: var(--chat-header-bg);
+        border-bottom: 1px solid var(--divider);
+        
+        :global {
+            .iconfont {
+                color: var(--sidebar-text);
+                opacity: 0.8;
+                
+                &:hover {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+.buttonContainer {
+    display: flex;
+    width: 80px;
+}
+
+.rightButtonContainer {
+    justify-content: flex-end;
+    gap: 8px;
+    align-items: center;
+    
+    @media @mobile {
+        gap: 4px;
+    }
+}
+
+.name {
+    font-size: 16px;
+    color: #333;
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    @media @mobile {
+        font-size: 13px;
+        height: 100%;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 0 4px;
+        gap: 8px;
+    }
+    
+    @media @tablet {
+        font-size: 15px;
+        gap: 10px;
+    }
+    
+    .dark-sidebar & {
+        color: var(--chat-header-text);
+    }
+}
+
+.headerAvatar {
+    flex-shrink: 0;
+    
+    @media @mobile {
+        width: 32px !important;
+        height: 32px !important;
+    }
+}
+
+.nameContent {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    flex: 1;
+    
+    @media @mobile {
+        justify-content: center;
+    }
+}
+
+.nameText {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.status {
+    color: #999;
+    font-size: 12px;
+    transform: scale(0.6);
+    
+    .dark-sidebar & {
+        color: var(--sidebar-muted);
+    }
+}
